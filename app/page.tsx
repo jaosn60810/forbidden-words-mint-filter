@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Filter from 'bad-words';
+// import Filter from 'bad-words';
 import MintFilter from 'mint-filter';
 import Image from 'next/image';
 
