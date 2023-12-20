@@ -10,16 +10,20 @@ export default function Home() {
   const [forbiddenWords, setForbiddenWords] = useState([]);
   const [results, setResults] = useState('');
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files[0];
+    if (!file) return;
+  
     const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const text = e.target.result;
+  
+    reader.onload = (e: ProgressEvent<FileReader>) => {
+      // Assert that the result is a string
+      const text = e.target.result as string;
+      
       const words = text.split(/[\r\n,]+/); // Adjust regex based on CSV format
       setForbiddenWords(words);
     };
-
+  
     reader.readAsText(file);
   };
 
